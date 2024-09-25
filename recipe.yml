@@ -1,0 +1,645 @@
+name: EZContent Article Feature
+description: 'Provides article content type.'
+recipes:
+
+install:
+  - ezcontent_theme
+  - ezcontent_node
+  - ezcontent_paragraphs
+  - autocomplete_deluxe:autocomplete_deluxe
+  - diff:diff
+  - entityqueue:entityqueue
+  - length_indicator:length_indicator
+  - schema_metatag:schema_article
+  - yoast_seo
+  - media
+  - social_media
+  - better_normalizers
+  - media_library
+  - paragraphs_edit
+  - paragraphs_library
+  - dropzonejs_eb_widget
+  - libraries
+  - media_entity_browser
+  - video_embed_media
+  - blazy
+  - media_entity_slideshow
+  - slick
+  - media_entity_instagram
+  - media_entity_twitter
+  - image_widget_crop
+  - color_field:color_field
+  - layout_builder_restrictions:layout_builder_restrictions
+  - layout_library:layout_library
+  - libraries:libraries
+  - colorbox
+  - paragraphs_previewer:paragraphs_previewer
+  - slick_paragraphs
+  - allowed_formats:allowed_formats
+  - paragraphs_jquery_ui_accordion
+  - webform
+  - simple_gmap
+  - viewsreference
+  - fvm
+  - content_moderation
+  - field_group
+  - smart_trim
+  - content_lock
+  - components
+
+config:
+  import:
+    ezcontent_paragraphs: '*'
+
+  actions:
+      system.theme:
+        simple_config_update:
+          default: ezcontent_theme
+      user.role.content_editor:
+        ensure_exists:
+          id: content_editor
+        grantPermissions:
+          - 'create article content'
+          - 'delete any article content'
+          - 'delete article revisions'
+          - 'delete own article content'
+          - 'edit any article content'
+          - 'edit own article content'
+          - 'revert article revisions'
+          - 'view article revisions'
+          - 'break content lock'
+          - 'use yoast seo'
+
+    # When a theme is enabled in Drupal, the blocks of the existing theme are
+    # automaticaly duplicated. In our case, on standard, the theme is claro.
+    # We set the blocks we don't want to false, and alter the config of the
+    # blocks that were created.
+      block.block.ezcontent_theme_account_menu:
+        simple_config_update:
+          status: false
+
+      block.block.ezcontent_theme_breadcrumbs:
+        simple_config_update:
+          status: false
+      block.block.ezcontent_theme_content:
+        simple_config_update:
+          status: false
+
+      block.block.ezcontent_theme_help:
+        simple_config_update:
+          status: false
+
+      block.block.ezcontent_theme_main_menu:
+        simple_config_update:
+          region: primary_menu
+          weight: 0
+
+      block.block.ezcontent_theme_messages:
+        simple_config_update:
+          status: false
+
+      block.block.ezcontent_theme_page_title:
+        simple_config_update:
+          langcode: en
+          status: true
+          dependencies:
+            module:
+              - node
+            theme:
+              - ezcontent_theme
+          id: ezcontent_theme_page_title
+          theme: ezcontent_theme
+          region: content
+          weight: 0
+          provider: null
+          plugin: page_title_block
+          settings:
+            id: page_title_block
+            label: 'Page title'
+            label_display: '0'
+            provider: core
+          visibility:
+            'entity_bundle:node':
+              id: 'entity_bundle:node'
+              negate: false
+              context_mapping:
+                node: '@node.node_route_context:node'
+              bundles:
+                article: article
+                page: page
+
+      block.block.ezcontent_theme_powered:
+        simple_config_update:
+          status: false
+
+      block.block.ezcontent_theme_primary_admin_actions:
+        simple_config_update:
+          status: false
+
+      block.block.ezcontent_theme_primary_local_tasks:
+        simple_config_update:
+          status: false
+
+      block.block.ezcontent_theme_search_form_narrow:
+        simple_config_update:
+          status: false
+
+      block.block.ezcontent_theme_search_form_wide:
+        simple_config_update:
+          status: false
+
+      block.block.ezcontent_theme_secondary_local_tasks:
+        simple_config_update:
+          status: false
+
+      block.block.ezcontent_theme_syndicate:
+        simple_config_update:
+          status: false
+
+      core.entity_form_display.node.article.default:
+        simple_config_update:
+          langcode: en
+          status: true
+          dependencies:
+            config:
+              - entity_browser.browser.image_browser
+              - field.field.node.article.field_author
+              - field.field.node.article.field_content
+              - field.field.node.article.field_meta_tags
+              - field.field.node.article.field_short_title
+              - field.field.node.article.field_social_sharing
+              - field.field.node.article.field_subhead
+              - field.field.node.article.field_summary
+              - field.field.node.article.field_tags
+              - field.field.node.article.field_thumbnail
+              - field.field.node.article.field_yoast_seo
+              - node.type.article
+            module:
+              - autocomplete_deluxe
+              - content_moderation
+              - entity_browser
+              - field_group
+              - length_indicator
+              - metatag
+              - paragraphs
+              - path
+              - scheduler
+              - social_media
+              - yoast_seo
+          third_party_settings:
+            field_group:
+              group_basic:
+                children:
+                  - title
+                  - field_short_title
+                  - field_subhead
+                  - field_author
+                parent_name: ''
+                weight: 0
+                format_type: fieldset
+                format_settings:
+                  id: ''
+                  classes: ''
+                  open: true
+                  required_fields: true
+                  description: ''
+                label: Basic
+                region: content
+              group_teaser:
+                children:
+                  - field_summary
+                  - field_thumbnail
+                parent_name: ''
+                weight: 1
+                format_type: fieldset
+                format_settings:
+                  id: ''
+                  classes: ''
+                  open: true
+                  required_fields: true
+                  description: ''
+                label: Teaser
+                region: content
+              group_content:
+                children:
+                  - field_content
+                parent_name: ''
+                weight: 2
+                format_type: fieldset
+                format_settings:
+                  id: ''
+                  classes: ''
+                  open: true
+                  required_fields: true
+                  description: ''
+                label: Content
+                region: content
+              group_taxonomy:
+                children:
+                  - field_tags
+                parent_name: ''
+                weight: 3
+                format_type: details
+                format_settings:
+                  label: Taxonomy
+                  description: ''
+                  required_fields: true
+                  id: ''
+                  classes: ''
+                  open: false
+                label: Taxonomy
+                region: content
+          id: node.article.default
+          targetEntityType: node
+          bundle: article
+          mode: default
+          content:
+            created:
+              type: datetime_timestamp
+              weight: 10
+              region: content
+              settings: {  }
+              third_party_settings: {  }
+            field_author:
+              weight: -2
+              settings:
+                limit: '10'
+                min_length: '0'
+                delimiter: ''
+                not_found_message_allow: '1'
+                not_found_message: 'Author ''@term'' could not be found.'
+                no_empty_message: 'No Author found.'
+                new_terms: 0
+                match_operator: CONTAINS
+                autocomplete_route_name: autocomplete_deluxe.autocomplete
+                size: 60
+                selection_handler: default
+              third_party_settings: {  }
+              type: autocomplete_deluxe
+              region: content
+            field_content:
+              type: paragraphs
+              weight: 9
+              settings:
+                title: Paragraph
+                title_plural: Paragraphs
+                edit_mode: closed
+                add_mode: modal
+                form_display_mode: default
+                default_paragraph_type: _none
+                closed_mode: summary
+                autocollapse: none
+                closed_mode_threshold: 0
+                features:
+                  collapse_edit_all: collapse_edit_all
+                  duplicate: duplicate
+              third_party_settings: {  }
+              region: content
+            field_meta_tags:
+              weight: 121
+              settings: {  }
+              third_party_settings: {  }
+              type: metatag_firehose
+              region: content
+            field_short_title:
+              weight: -4
+              settings:
+                size: 60
+                placeholder: ''
+              third_party_settings: {  }
+              type: string_textfield
+              region: content
+            field_social_sharing:
+              weight: 124
+              settings:
+                display_label: true
+              third_party_settings: {  }
+              type: social_media_default
+              region: content
+            field_subhead:
+              weight: -3
+              settings:
+                size: 60
+                placeholder: ''
+              third_party_settings: {  }
+              type: string_textfield
+              region: content
+            field_summary:
+              weight: 13
+              settings:
+                rows: 5
+                placeholder: ''
+              third_party_settings: {  }
+              type: string_textarea
+              region: content
+            field_tags:
+              weight: 15
+              settings:
+                limit: '10'
+                min_length: '0'
+                delimiter: ''
+                not_found_message_allow: '1'
+                not_found_message: 'The term ''@term'' will be added'
+                new_terms: '1'
+                no_empty_message: 'No terms could be found. Please type in order to add a new term.'
+                match_operator: CONTAINS
+                autocomplete_route_name: autocomplete_deluxe.autocomplete
+                size: 60
+                selection_handler: default
+              third_party_settings: {  }
+              type: autocomplete_deluxe
+              region: content
+            field_thumbnail:
+              weight: 122
+              settings:
+                entity_browser: image_browser
+                field_widget_display: rendered_entity
+                field_widget_edit: true
+                field_widget_remove: true
+                open: true
+                selection_mode: selection_append
+                field_widget_display_settings:
+                  view_mode: thumbnail
+                field_widget_replace: false
+              third_party_settings: {  }
+              type: entity_browser_entity_reference
+              region: content
+            field_yoast_seo:
+              weight: 123
+              settings:
+                body: field_summary
+              third_party_settings: {  }
+              type: yoast_seo_widget
+              region: content
+            moderation_state:
+              type: moderation_state_default
+              weight: 100
+              settings: {  }
+              region: content
+              third_party_settings: {  }
+            path:
+              type: path
+              weight: 30
+              region: content
+              settings: {  }
+              third_party_settings: {  }
+            promote:
+              type: boolean_checkbox
+              settings:
+                display_label: true
+              weight: 15
+              region: content
+              third_party_settings: {  }
+            publish_on:
+              type: datetime_timestamp_no_default
+              weight: 30
+              region: content
+              settings: {  }
+              third_party_settings: {  }
+            scheduler_settings:
+              weight: 20
+              region: content
+              settings: {  }
+              third_party_settings: {  }
+            status:
+              type: boolean_checkbox
+              settings:
+                display_label: true
+              weight: 120
+              region: content
+              third_party_settings: {  }
+            sticky:
+              type: boolean_checkbox
+              settings:
+                display_label: true
+              weight: 16
+              region: content
+              third_party_settings: {  }
+            title:
+              type: string_textfield
+              weight: -5
+              region: content
+              settings:
+                size: 60
+                placeholder: ''
+              third_party_settings:
+                length_indicator:
+                  indicator: true
+                  indicator_opt:
+                    optimin: 50
+                    optimax: 80
+                    tolerance: 10
+            uid:
+              type: entity_reference_autocomplete
+              weight: 5
+              settings:
+                match_operator: CONTAINS
+                size: 60
+                placeholder: ''
+                match_limit: 10
+              region: content
+              third_party_settings: {  }
+            unpublish_on:
+              type: datetime_timestamp_no_default
+              weight: 30
+              region: content
+              settings: {  }
+              third_party_settings: {  }
+            url_redirects:
+              weight: 50
+              region: content
+              settings: {  }
+              third_party_settings: {  }
+          hidden: {  }
+
+      core.entity_view_display.node.article.default:
+        simple_config_update:
+          langcode: en
+          status: true
+          dependencies:
+            config:
+              - field.field.node.article.field_author
+              - field.field.node.article.field_content
+              - field.field.node.article.field_meta_tags
+              - field.field.node.article.field_short_title
+              - field.field.node.article.field_social_sharing
+              - field.field.node.article.field_subhead
+              - field.field.node.article.field_summary
+              - field.field.node.article.field_tags
+              - field.field.node.article.field_thumbnail
+              - field.field.node.article.field_yoast_seo
+              - node.type.article
+            module:
+              - entity_reference_revisions
+              - metatag
+              - social_media
+              - user
+          id: node.article.default
+          targetEntityType: node
+          bundle: article
+          mode: default
+          content:
+            content_moderation_control:
+              weight: 0
+              region: content
+              settings: {  }
+              third_party_settings: {  }
+            field_author:
+              weight: 5
+              label: above
+              settings:
+                link: false
+                view_mode: default
+              third_party_settings: {  }
+              type: entity_reference_entity_view
+              region: content
+            field_content:
+              type: entity_reference_revisions_entity_view
+              weight: 2
+              region: content
+              label: hidden
+              settings:
+                view_mode: default
+                link: ''
+              third_party_settings: {  }
+            field_meta_tags:
+              weight: 4
+              label: above
+              settings: {  }
+              third_party_settings: {  }
+              type: metatag_empty_formatter
+              region: content
+            field_social_sharing:
+              weight: 1
+              label: hidden
+              settings: {  }
+              third_party_settings: {  }
+              type: social_media_default
+              region: content
+            links:
+              weight: 3
+              region: content
+              settings: {  }
+              third_party_settings: {  }
+          hidden:
+            field_short_title: true
+            field_subhead: true
+            field_summary: true
+            field_tags: true
+            field_thumbnail: true
+            field_yoast_seo: true
+
+      core.entity_view_display.node.article.teaser:
+        simple_config_update:
+          langcode: en
+          status: true
+          dependencies:
+            config:
+              - core.entity_view_mode.node.teaser
+              - field.field.node.article.field_author
+              - field.field.node.article.field_content
+              - field.field.node.article.field_meta_tags
+              - field.field.node.article.field_short_title
+              - field.field.node.article.field_social_sharing
+              - field.field.node.article.field_subhead
+              - field.field.node.article.field_summary
+              - field.field.node.article.field_tags
+              - field.field.node.article.field_thumbnail
+              - field.field.node.article.field_yoast_seo
+              - node.type.article
+            module:
+              - user
+          third_party_settings: {  }
+          id: node.article.teaser
+          targetEntityType: node
+          bundle: article
+          mode: teaser
+          content:
+            content_moderation_control:
+              weight: -20
+              settings: {  }
+              third_party_settings: {  }
+              region: content
+            field_summary:
+              type: basic_string
+              weight: 1
+              region: content
+              label: hidden
+              settings: {  }
+              third_party_settings: {  }
+            field_thumbnail:
+              type: entity_reference_entity_view
+              weight: 0
+              region: content
+              label: hidden
+              settings:
+                view_mode: thumbnail
+                link: false
+              third_party_settings: {  }
+          hidden:
+            field_author: true
+            field_content: true
+            field_meta_tags: true
+            field_short_title: true
+            field_social_sharing: true
+            field_subhead: true
+            field_tags: true
+            field_yoast_seo: true
+            links: true
+
+      field.field.node.article.field_tags:
+        simple_config_update:
+          langcode: en
+          status: true
+          dependencies:
+            config:
+              - field.storage.node.field_tags
+              - node.type.article
+              - taxonomy.vocabulary.tags
+          id: node.article.field_tags
+          field_name: field_tags
+          entity_type: node
+          bundle: article
+          label: Tags
+          description: ''
+          required: false
+          translatable: true
+          default_value: {  }
+          default_value_callback: ''
+          settings:
+            handler: 'default:taxonomy_term'
+            handler_settings:
+              target_bundles:
+                tags: tags
+              sort:
+                field: _none
+              auto_create: true
+              auto_create_bundle: ''
+          field_type: entity_reference
+
+      node.type.article:
+        simple_config_update:
+          langcode: en
+          status: true
+          dependencies:
+            module:
+            - scheduler
+          third_party_settings:
+            scheduler:
+              expand_fieldset: when_required
+              fields_display_mode: vertical_tab
+              publish_enable: true
+              publish_past_date: error
+              publish_past_date_created: false
+              publish_required: false
+              publish_revision: false
+              publish_touch: false
+              unpublish_enable: true
+              unpublish_required: false
+              unpublish_revision: false
+          name: Article
+          type: article
+          description: 'Use <em>articles</em> for time-sensitive content like news, press releases or blog posts.'
+          new_revision: true
+          preview_mode: 0
+          display_submitted: false
