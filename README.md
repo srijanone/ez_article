@@ -49,5 +49,3 @@ ddev drush recipe recipes/ez_article;
 
 **CMS:** Drupal
 
-
-# ez_article
