@@ -8,8 +8,8 @@ Provides article content type with components
 #### Install the project using composer 
 
 ```bash
-composer create-project drupal/recommended-project:^10.0 pagebuilderez
-cd pagebuilderez;
+composer create-project drupal/recommended-project:^10.0 ezarticle
+cd ezarticle;
 composer config repositories.drupal8 composer https://packages.drupal.org/8
 composer config repositories.asset-packagist composer https://asset-packagist.org
 composer config minimum-stability dev
@@ -27,8 +27,8 @@ drush recipe recipes/ez_article;
 #### ddev setup
 
 ```bash
-composer create-project drupal/recommended-project:^10.0 pagebuilderez
-cd pagebuilderez;
+composer create-project drupal/recommended-project:^10.0 ezarticle
+cd ezarticle;
 ddev config --project-type=drupal9 --docroot=web --create-docroot
 ddev start
 ddev composer config repositories.drupal8 composer https://packages.drupal.org/8
