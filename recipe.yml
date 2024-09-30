@@ -51,6 +51,16 @@ config:
   import:
     ezcontent_paragraphs: '*'
 
+    media_library:
+      - core.entity_form_mode.media.media_library
+      - core.entity_view_mode.media.media_library
+
+    slick:
+      - core.entity_view_mode.media.slick
+
+    paragraphs:
+      - core.entity_view_mode.paragraph.preview
+
   actions:
       system.theme:
         simple_config_update:
