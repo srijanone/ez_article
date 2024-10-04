@@ -1,5 +1,5 @@
 {
-    "name": "drupal_recipe/ez_article",
+    "name": "srijanone/ez_article",
     "description": "Provides article content type.",
     "type": "drupal-recipe",
     "repositories": [
