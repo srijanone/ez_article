@@ -60,7 +60,7 @@ composer require wikimedia/composer-merge-plugin
 
 #### 10. To require the dev-main branch of ez decoupled execute this command
 ```bash
-composer require srijanone/ez_articler:dev-main
+composer require srijanone/ez_article:dev-main
 ```
 
 #### 11. Now run below commands to configure your site
@@ -190,7 +190,7 @@ composer require wikimedia/composer-merge-plugin
 
 #### 9. To require the dev-main branch of ez decoupled execute this command
 ```bash
-composer require srijanone/ez_articler:dev-main
+composer require srijanone/ez_article:dev-main
 ```
 
 #### 10. Now run below commands to configure your site
