@@ -1,6 +1,6 @@
 # srijanone/ez_article
 
-Provides article content type with components
+EzContent Article: Enables content editors to create, manage, and optimize articles for content-heavy sites with features like scheduling, real-time SEO, and flexible structuring using Drupal paragraphs.
 
 
 ## Installation
