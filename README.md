@@ -50,24 +50,24 @@ composer require drush/drush
 ```
 #### 8. To merge the composer.libraries.json file into your main composer.json, install the Composer Merge Plugin. From the project directory, open a terminal and run
 ```bash
-composer require wikimedia/composer-merge-plugin 
+composer require wikimedia/composer-merge-plugin
 ```
 
 #### 9. Then Edit the composer.json file of your Drupal website, and under the "extra" section add this entry
 ```bash
-"merge-plugin": { "include": [ "web/modules/contrib/*/composer.libraries.json" ] } 
+"merge-plugin": { "include": [ "web/modules/contrib/*/composer.libraries.json" ] }
 ```
 
-#### 10. To require the dev-main branch of ez decoupled, execute this command
+#### 10. To require the ^1.0.1 tag of ez decoupled, execute this command
 ```bash
-composer require srijanone/ez_article:dev-main
+composer require srijanone/ez_article:^1.0.1
 ```
 
 #### 11. Now run below commands to configure your site
 ```bash
 composer install
 drush si
-drush recipe recipes/contrib/ez_article;     
+drush recipe recipes/contrib/ez_article;
 ```
 
 ### B. Create a new project using ddev
@@ -121,24 +121,24 @@ ddev composer require drush/drush
 ```
 #### 9. To merge the composer.libraries.json file into your main composer.json, install the Composer Merge Plugin. From the project directory, open a terminal and run
 ```bash
-ddev composer require wikimedia/composer-merge-plugin 
+ddev composer require wikimedia/composer-merge-plugin
 ```
 
 #### 10. Then Edit the composer.json file of your Drupal website, and under the "extra" section add this entry
 ```bash
-"merge-plugin": { "include": [ "web/modules/contrib/*/composer.libraries.json" ] } 
+"merge-plugin": { "include": [ "web/modules/contrib/*/composer.libraries.json" ] }
 ```
 
-#### 11. To require the dev-main branch of ez decoupled, execute this command
+#### 11. To require the ^1.0.1 tag of ez decoupled, execute this command
 ```bash
-ddev composer require srijanone/ez_article:dev-main
+ddev composer require srijanone/ez_article:^1.0.1
 ```
 
 #### 12. Now run below commands to configure your site
 ```bash
 ddev composer install
 ddev drush si
-ddev drush recipe recipes/contrib/ez_article;     
+ddev drush recipe recipes/contrib/ez_article;
 ```
 ### C. Install the recipe in existing project
 
@@ -180,23 +180,23 @@ composer require drush/drush
 ```
 #### 7. To merge the composer.libraries.json file into your main composer.json, install the Composer Merge Plugin. From the project directory, open a terminal and run
 ```bash
-composer require wikimedia/composer-merge-plugin 
+composer require wikimedia/composer-merge-plugin
 ```
 
 #### 8. Then Edit the composer.json file of your Drupal website, and under the "extra" section add this entry
 ```bash
-"merge-plugin": { "include": [ "web/modules/contrib/*/composer.libraries.json" ] } 
+"merge-plugin": { "include": [ "web/modules/contrib/*/composer.libraries.json" ] }
 ```
 
-#### 9. To require the dev-main branch of ez decoupled, execute this command
+#### 9. To require the ^1.0.1 tag of ez decoupled, execute this command
 ```bash
-composer require srijanone/ez_article:dev-main
+composer require srijanone/ez_article:^1.0.1
 ```
 
 #### 10. Now run below commands to configure your site
 ```bash
 composer install
-drush recipe recipes/contrib/ez_article;     
+drush recipe recipes/contrib/ez_article;
 ```
 ## Tech Stack
 

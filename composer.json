@@ -14,8 +14,8 @@
         ],
     "require": {
         "drupal/schema_metatag": "^3.0",
-        "srijanone/ezcontent_paragraphs": "dev-main",
-        "srijanone/ezcontent_node": "dev-main",
+        "srijanone/ezcontent_paragraphs": "^1.0.1",
+        "srijanone/ezcontent_node": "^1.0.1",
         "drupal/length_indicator": "^1.4",
         "drupal/entityqueue": "^1.8",
         "drupal/field_group": "^3.6",
