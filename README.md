@@ -1,4 +1,4 @@
-# srijanone/ez_article
+# drupal/ez_article
 
 EzContent Article: Enables content editors to create, manage, and optimize articles for content-heavy sites with features like scheduling, real-time SEO, and flexible structuring using Drupal paragraphs.
 
@@ -60,7 +60,7 @@ composer require wikimedia/composer-merge-plugin
 
 #### 10. To require the ^1.0.1 tag of ez article, execute this command
 ```bash
-composer require srijanone/ez_article:^1.0.1
+composer require drupal/ez_article:^1.0.1
 ```
 
 #### 11. Now run below commands to configure your site
@@ -131,7 +131,7 @@ ddev composer require wikimedia/composer-merge-plugin
 
 #### 11. To require the ^1.0.1 tag of ez article, execute this command
 ```bash
-ddev composer require srijanone/ez_article:^1.0.1
+ddev composer require drupal/ez_article:^1.0.1
 ```
 
 #### 12. Now run below commands to configure your site
@@ -190,7 +190,7 @@ composer require wikimedia/composer-merge-plugin
 
 #### 9. To require the ^1.0.1 tag of ez article, execute this command
 ```bash
-composer require srijanone/ez_article:^1.0.1
+composer require drupal/ez_article:^1.0.1
 ```
 
 #### 10. Now run below commands to configure your site
