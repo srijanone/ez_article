@@ -3,6 +3,7 @@
     "description": "Provides article content type.",
     "type": "drupal-recipe",
     "require": {
+        "drupal/core": "^10.0",
         "drupal/schema_metatag": "^3.0",
         "srijanone/ezcontent_paragraphs": "^1.0.1",
         "srijanone/ezcontent_node": "^1.0.1",
