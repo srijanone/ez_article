@@ -2,12 +2,6 @@
     "name": "drupal/ez_article",
     "description": "Provides article content type.",
     "type": "drupal-recipe",
-    "repositories": [
-            {
-                "type": "composer",
-                "url": "https://packages.drupal.org/8"
-            }
-        ],
     "require": {
         "drupal/schema_metatag": "^3.0",
         "srijanone/ezcontent_paragraphs": "^1.0.1",
